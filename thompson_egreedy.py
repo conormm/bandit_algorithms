@@ -37,7 +37,6 @@ class Environment:
         
         return self.total_reward
 
-
 machines = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 payouts = [0.023, 0.001, 0.029, 0.001, 0.002, 0.04, 0.0234, 0.002, 0.01, 0.0121, .3]
 
@@ -136,11 +135,11 @@ class ThompsonSampler(BaseSampler):
     def collect_data(self):
         self.data = pd.DataFrame(dict(ad=self.ad_i, reward=self.r_i, regret=self.regret_i))
 
-en = Environment(machines, payouts, 10000)
-tsa = ThompsonSampler(env=en, n_samples=50)
-en.run(agent=tsa)
+en1 = Environment(machines, payouts, 10000)
+tsa = ThompsonSampler(env=en1, n_samples=50)
+en1.run(agent=tsa)
 
-en = Environment(machines, payouts, 10000)
-tsa = eGreedy(env=en, n_learning=1000, e=0.05)
-en.run(agent=tsa)
+en2 = Environment(machines, payouts, 10000)
+eg = eGreedy(env=en2, n_learning=1000, e=0.05)
+en2.run(agent=eg)
 
